@@ -2,9 +2,11 @@
 # import alpaca-py as alpaca  # Assuming you have the Alpaca API library installed
 from alpaca.data.timeframe import TimeFrame
 from alpaca.trading.client import TradingClient
-
+from alpaca.trading.requests import GetAssetsRequest
+from alpaca.trading.enums import AssetClass
 
 # from .alpaca-trade-api import alpaca_trading
+
 
 print("Hello")
 
@@ -17,16 +19,25 @@ def get_alpaca_api():
     # ALPACA_API_KEY = "<YOUR ALPACA API KEY>"
     # ALPACA_SECRET_KEY = "<YOUR ALPACA SECRET KEY>"
     # Replace with your actual Alpaca API key and secret (DO NOT SHARE THIS INFORMATION)
-    api_key = "AKU1KJ87ZGWXEX727TEO"
-    api_secret = "FvNdukxPK2hV6D2AdejUrYmPVkXa4QW56HUJVNLB"
+    api_key = "PKQVJGAODJ10MIPBG6AD"
+    api_secret = "HfreSfxHl7hUL5Juga1b2pPSzjmfqQEMemT9Tgjl"
     return TradingClient(api_key, api_secret)
 
-print(get_alpaca_api())
 
-# def get_market_data(client, symbol):
-#     # Simulate retrieving market data (replace with actual API calls)
-#     data = {"open": 100, "high": 110, "low": 90, "close": 105}
-#     return data
+def get_market_data():
+# Simulate retrieving market data (replace with actual API calls)
+    api_key = "PKQVJGAODJ10MIPBG6AD"
+    api_secret = "HfreSfxHl7hUL5Juga1b2pPSzjmfqQEMemT9Tgjl"
+    trading_client = TradingClient(api_key, api_secret)
+# search for US equities
+    search_params = GetAssetsRequest(asset_class=AssetClass.US_EQUITY)
+    assets = trading_client.get_all_assets(search_params)
+# data = {"open": 100, "high": 110, "low": 90, "close": 105}
+    print(assets)
+    return assets
+
+
+get_market_data()
 
 # def make_trade_decision(data):
 #     # Simulate a trading decision (replace with your trading strategy logic)
@@ -56,3 +67,7 @@ print(get_alpaca_api())
 
 # if __name__ == "__main__":
 #     main()
+
+
+
+
